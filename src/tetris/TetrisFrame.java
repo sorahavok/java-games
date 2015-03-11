@@ -72,5 +72,4 @@ public class TetrisFrame extends JFrame {
 			@Override public void windowActivated(WindowEvent arg0) {}
 		});
 	}
-
 }

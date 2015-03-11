@@ -1,8 +1,5 @@
 package tetris.panel;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -21,13 +18,7 @@ public abstract class AbsPanel extends JPanel implements Runnable {
 
 	protected JButton returnHomeButton() {
 		JButton back = new JButton("Back");
-		add(back);
-		back.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				TetrisFrame.getInstance().setPanel(HOME_PANEL);
-			}
-		});
+		back.addActionListener( event -> TetrisFrame.getInstance().setPanel(HOME_PANEL) );
 		return back;
 	}
 }

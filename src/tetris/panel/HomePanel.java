@@ -1,8 +1,5 @@
 package tetris.panel;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 
 import tetris.TetrisFrame;
@@ -20,31 +17,10 @@ public class HomePanel extends AbsPanel {
 		add(config);
 		add(blockMaker);
 		add(exit);
-
 		
-		play.addActionListener(new SwapPanels(GAME_PANEL));
-		config.addActionListener(new SwapPanels(CONFIG_PANEL));
-		blockMaker.addActionListener(new SwapPanels(BLOCK_MAKER_PANEL));
-		
-		exit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				TetrisFrame.exitApplication();
-			}
-		});
-	}
-	
-	private class SwapPanels implements ActionListener{
-		
-		private final String destination;
-		
-		public SwapPanels(String aDestination) {
-			destination = aDestination;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			TetrisFrame.getInstance().setPanel(destination);			
-		}
+		play.addActionListener(e -> TetrisFrame.getInstance().setPanel(GAME_PANEL));
+		config.addActionListener(e -> TetrisFrame.getInstance().setPanel(CONFIG_PANEL));
+		blockMaker.addActionListener(e -> TetrisFrame.getInstance().setPanel(BLOCK_MAKER_PANEL));
+		exit.addActionListener(e -> TetrisFrame.exitApplication());
 	}
 }

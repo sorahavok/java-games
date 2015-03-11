@@ -1,9 +1,6 @@
 package tetris.panel;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -44,31 +41,20 @@ public class BlockMakerPanel extends AbsPanel {
 	}
 
 	private void addSaveListener(final BlockBuilder blockBuilder, JButton save) {
-		save.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				scroll.updateScrollPane(blockBuilder.getPiece());
-			}
-		});
+		save.addActionListener( action -> scroll.updateScrollPane(blockBuilder.getPiece()) );
 	}
 
 	private void addDropDownsListener(final BlockBuilder blockBuilder) {
-		colors.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
+		colors.addItemListener( event -> {
+				if (event.getStateChange() == ItemEvent.SELECTED) {
 					blockBuilder.setColor(colors.getSelectedIndex() + 1); // black was removed so shift everything
 				}
-			}
-		});
+			});
 		
-		gridSize.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
+		gridSize.addItemListener( event -> {
+				if (event.getStateChange() == ItemEvent.SELECTED) {
 					blockBuilder.setGirdSize(gridSize.getSelectedIndex());
 				}
-			}
-		});
+			});
 	}
 }
