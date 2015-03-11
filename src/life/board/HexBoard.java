@@ -12,6 +12,7 @@ public class HexBoard implements Board {
 	private final Image full;
 	private final Image empty;
 	private final ImageObserver imageObserver;
+	private final int[] adj = new int[6];
 	
 	public HexBoard(BoardHandler board, int tileSize, Image full, Image empty, ImageObserver imageObserver) {
 		this.board = board;
@@ -34,13 +35,13 @@ public class HexBoard implements Board {
 			for(int x=0; x < width; x++) {
 				int leftX = (x - 1 + width) % width;
 
-				int[] adj = { 
-						board.get(twoAboveY, x),						
-						board.get(aboveY, leftX),
-						board.get(aboveY, x),
-						board.get(belowY, leftX),
-						board.get(belowY, x),
-						board.get(twoBelowY, x)};
+				adj[0] = board.get(twoAboveY, x);						
+				adj[1] = board.get(aboveY, leftX);						
+				adj[2] = board.get(aboveY, x);						
+				adj[3] = board.get(belowY, leftX);						
+				adj[4] = board.get(belowY, x);						
+				adj[5] = board.get(twoBelowY, x);
+				
 				board.updateCell(adj, y, x);
 			}
 		}

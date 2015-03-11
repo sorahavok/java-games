@@ -40,7 +40,8 @@ public class BoardHandler {
 	}
 
 	public void updateBoard() {
+		int[][] temp = boardArray;
 		boardArray = boardArrayBuffer;
-		boardArrayBuffer = new int[getHeight()][getWidth()];
+		boardArrayBuffer = temp;
 	}
 }

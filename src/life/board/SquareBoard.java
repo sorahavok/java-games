@@ -11,6 +11,7 @@ public class SquareBoard implements Board {
 	private final int blockSize;	
 	private final int height;
 	private final int width;
+	private final int[] adj = new int[8];
 	
 	public SquareBoard(BoardHandler board, int tileSize) {
 		this.board = board;
@@ -21,26 +22,22 @@ public class SquareBoard implements Board {
 	
 	@Override
 	public void update() {
-		int aboveY;
-		int belowY;
-		int leftX;
-		int rightX;
 		for(int y=0; y < height; y++) {
-			aboveY = (y - 1 + height) % height;
-			belowY = (y + 1) % height;
+			int aboveY = (y - 1 + height) % height;
+			int belowY = (y + 1) % height;
 			
 			for(int x=0; x < width; x++) {
-				leftX = (x - 1 + width) % width;
-				rightX = (x + 1) % width;
+				int leftX = (x - 1 + width) % width;
+				int rightX = (x + 1) % width;
 				
-				int[] adj = { board.get(aboveY,leftX),
-						board.get(aboveY,x),
-						board.get(aboveY,rightX),
-						board.get(y,leftX),
-						board.get(y,rightX),
-						board.get(belowY,leftX),
-						board.get(belowY,x),
-						board.get(belowY,rightX)};
+				adj[0] = board.get(aboveY,leftX);
+				adj[1] = board.get(aboveY,x);
+				adj[2] = board.get(aboveY,rightX);
+				adj[3] = board.get(y,leftX);
+				adj[4] = board.get(y,rightX);
+				adj[5] = board.get(belowY,leftX);
+				adj[6] = board.get(belowY,x);
+				adj[7] = board.get(belowY,rightX);
 				
 				board.updateCell(adj, y, x);
 			}

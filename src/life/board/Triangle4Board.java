@@ -9,6 +9,7 @@ public class Triangle4Board implements Board {
 	private final int halfBlockSize;
 	private final int height;
 	private final int width;
+	private final int[] adj = new int[3];
 	
 	public Triangle4Board(BoardHandler board, int tileSize) {
 		this.board = board;
@@ -28,17 +29,14 @@ public class Triangle4Board implements Board {
 				int leftX = (x - 1 + width) % width;
 				int rightX = (x + 1) % width;
 				
-				int[] adj;
 				if (pointUp) {
-					adj = new int[]{
-							board.get(y, leftX),						
-							board.get(y, rightX),
-							board.get(belowY, x), };
+					adj[0] = board.get(y, leftX);						
+					adj[1] = board.get(y, rightX);
+					adj[2] = board.get(belowY, x);
 				} else {
-					adj = new int[]{
-							board.get(y, rightX),						
-							board.get(y, leftX),
-							board.get(aboveY, x), };
+					adj[0] = board.get(y, rightX);
+					adj[1] = board.get(y, leftX);
+					adj[2] = board.get(aboveY, x);
 				}
 				board.updateCell(adj, y, x);
 				
