@@ -19,7 +19,7 @@ import com.thoughtworks.xstream.XStream;
 
 public class Configuration {
 
-	private static final String rootLoc = "resources/";
+	private static final String rootLoc = "res/tetris/";
 	private static final String CONFIG_FILE = rootLoc + "config.xml";
 	public static final String BLOCK_FILE = rootLoc + "imgs/squareImg.png";
 	// private static final String USER_BLOCK = "User Block";

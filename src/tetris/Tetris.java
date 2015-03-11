@@ -10,7 +10,7 @@ import tetris.panel.AbsPanel;
 public class Tetris {
 
 	public static void main(String[] args){
-		Level logLevel = Level.WARNING;
+		Level logLevel = Level.INFO;
 		
 		Handler h = new ConsoleHandler();
 		h.setLevel(logLevel);
