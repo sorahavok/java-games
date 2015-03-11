@@ -15,10 +15,7 @@ public class PlayPauseController extends AbstractController {
 
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
-		int nextFps = fps + e.getWheelRotation();
-		if (nextFps > 0) {
-			fps = nextFps;	
-		}
+		fps = Math.max(fps + e.getWheelRotation(), 0);
 		System.out.println("FPS = " + fps);
 	}
 	
@@ -29,5 +26,4 @@ public class PlayPauseController extends AbstractController {
 			this.running = !this.running;
 		}
 	}
-
 }

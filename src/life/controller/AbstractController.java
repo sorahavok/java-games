@@ -11,9 +11,10 @@ public abstract class AbstractController extends JPanel implements Controller {
 
 	protected final JFrame frame;
 	protected final Board board;
-	protected int fps = 10;
-	boolean running;
-	boolean keepAlive;
+	
+	protected int fps;
+	protected boolean running;
+	protected boolean keepAlive;
 	
 	public AbstractController(final JFrame frame, final Board board, final boolean running, final int fps) {
 		this.frame = frame;
