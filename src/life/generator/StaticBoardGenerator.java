@@ -14,7 +14,6 @@ public class StaticBoardGenerator implements BoardGenerator {
 		{0,0,1,0,0},
 		{0,0,1,0,0},
 		{0,0,0,0,0}};
-		
 	
 	private static int[][] GLIDER= new int[][]{
 		{0,0,0,0,0,0},
@@ -23,7 +22,6 @@ public class StaticBoardGenerator implements BoardGenerator {
 		{0,0,1,1,1,0},
 		{0,0,0,0,0,0},
 		{0,0,0,0,0,0}};
-	
 	
 	private static int[][] SPACESHIP = new int[][]{
 		{0,0,0,0,0,0,0,0,0},
@@ -50,5 +48,4 @@ public class StaticBoardGenerator implements BoardGenerator {
 		   System.arraycopy(b, 0, c, aLen, bLen);
 		   return c;
 		}
-	
 }

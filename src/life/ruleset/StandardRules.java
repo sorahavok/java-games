@@ -19,5 +19,4 @@ public class StandardRules implements RuleSet {
 		// Look for a "live value" in the map if it is there return it otherwise 0
 		return ruleMap.getOrDefault(sum, BlockState.DIE);
 	}
-
 }

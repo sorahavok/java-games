@@ -13,7 +13,6 @@ public class HexBoard implements Board {
 	private final Image empty;
 	private final ImageObserver imageObserver;
 	
-	
 	public HexBoard(BoardHandler board, int tileSize, Image full, Image empty, ImageObserver imageObserver) {
 		this.board = board;
 		this.blockSize = tileSize;
@@ -56,11 +55,9 @@ public class HexBoard implements Board {
 			int xOffset = y % 2 == 0 ? 0 : (int)(blockSize * .75); 
 			
 			for(int x = 0; x < width; x++) {
-				
 				Image img = board.get(y,x) == 0 ? empty : full;
 				g.drawImage(img, (int)(1.5*x*blockSize)+xOffset, y/2*blockSize+yOffset, blockSize, blockSize, imageObserver);
 			}
 		}
 	}
-
 }

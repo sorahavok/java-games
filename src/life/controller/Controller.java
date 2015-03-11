@@ -10,7 +10,6 @@ public interface Controller extends Runnable, MouseListener, MouseWheelListener 
 	void render(Graphics g);
 	void exit();
 	
-	
 	@Override default void mouseClicked(MouseEvent e) {
 		// Exit with right click
 		if(e.getButton() == MouseEvent.BUTTON3) {

@@ -1,6 +1,5 @@
 package life.board;
 
-
 import java.awt.*;
 
 public class Triangle4Board implements Board {
@@ -70,5 +69,4 @@ public class Triangle4Board implements Board {
 			}
 		}
 	}
-
 }

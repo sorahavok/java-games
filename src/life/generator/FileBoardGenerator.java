@@ -31,5 +31,4 @@ public class FileBoardGenerator implements BoardGenerator {
 		}
 		return intLists.toArray(new int[0][0]);
 	}
-
 }
