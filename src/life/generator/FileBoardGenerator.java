@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FileBoardGenerator implements BoardGenerator {
 
-	private static final String BASE_PATH = "res/";
+	private static final String BASE_PATH = "res/boards/";
 
 	private final String fileName;
 
