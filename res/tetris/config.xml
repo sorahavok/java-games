@@ -1,34 +1,34 @@
 <tetris.Configuration>
   <height>768</height>
   <width>1024</width>
-  <controllerMap class="linked-hash-map">
+  <controllerMap>
     <entry>
-      <string>Up</string>
-      <int>87</int>
+      <string>Rotate CW</string>
+      <int>81</int>
     </entry>
     <entry>
       <string>Down</string>
       <int>83</int>
     </entry>
     <entry>
-      <string>Right</string>
-      <int>68</int>
+      <string>Pause</string>
+      <int>16</int>
     </entry>
     <entry>
       <string>Left</string>
       <int>65</int>
     </entry>
     <entry>
-      <string>Rotate CW</string>
-      <int>81</int>
+      <string>Right</string>
+      <int>68</int>
     </entry>
     <entry>
       <string>Rotate CCW</string>
       <int>69</int>
     </entry>
     <entry>
-      <string>Pause</string>
-      <int>16</int>
+      <string>Up</string>
+      <int>87</int>
     </entry>
     <entry>
       <string>Exit</string>
