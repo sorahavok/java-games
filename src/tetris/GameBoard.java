@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.*;
 
 import tetris.control.Input;
 import tetris.factories.ColorFactory;
@@ -14,18 +15,17 @@ import tetris.piece.Block;
 
 public class GameBoard {
 
-	private List<Block[]> gameBoard;
-	private int height, width;
+	private final List<Block[]> gameBoard;
+	private final int height, width;
 
 	private static Logger LOG = Logger.getGlobal();
 
 	public GameBoard(int aWidth, int aHeight) {
 		height = aHeight;
 		width = aWidth;
-		gameBoard = new ArrayList<>(height);
-		for (int h = 0; h < height; h++) {
-			gameBoard.add(createBlockRow(h));
-		}
+		gameBoard = IntStream.range(0, height)
+							 .mapToObj(h -> createBlockRow(h))
+							 .collect(Collectors.toList());
 	}
 
 	private Block[] createBlockRow(int h) {

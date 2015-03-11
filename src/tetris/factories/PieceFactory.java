@@ -12,8 +12,7 @@ public class PieceFactory {
 	private static List<Piece> pieces = new ArrayList<>();
 
 	public static Piece getRandomPiece() {
-		int randNum = rand.nextInt(pieces.size());
-		 return pieces.get(randNum);
+		return pieces.get(rand.nextInt(pieces.size()));
 	}
 
 	public static void registerPiece(Piece newPiece) {
