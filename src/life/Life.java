@@ -20,6 +20,7 @@ public class Life extends JPanel {
 	private static final int FPS = 10;
 	private static final int FRAME_WIDTH = 1920;
 	private static final int FRAME_HEIGHT = 1080;
+	private static final String IMAGE_FLIE_PATH = "res/life/tileImages/";
 
 	private final Controller controller;
 
@@ -68,8 +69,8 @@ public class Life extends JPanel {
 		Board board = new SquareBoard(boardHandler, TILE_SIZE);
 //		Board board = new Triangle4Board(boardHandler, TILE_SIZE);
 		
-//		Image full = ImageIO.read(new File("res/tileImages/FilledHex.png"));
-//		Image empty = ImageIO.read(new File("res/tileImages/EmptyHex.png"));
+//		Image full = ImageIO.read(new File(IMAGE_FLIE_PATH + "FilledHex.png"));
+//		Image empty = ImageIO.read(new File(IMAGE_FLIE_PATH + "EmptyHex.png"));
 //		Board board = new HexBoard(boardHandler, TILE_SIZE, full, empty, frame);
 		
 //		Controller controller = new AlwaysPlay(f, board, FPS);
