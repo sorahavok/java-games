@@ -16,7 +16,7 @@ import tetris.piece.Piece;
 public class PieceSelectorScroll extends JScrollPane implements ItemListener {
 
 	private static final int NUM_BLOCKS_SHOWING = 6, SCROLLBAR_WIDTH = 10, SCROLLBAR_PADDING = 3;
-	private JPanel blocksPanel;
+	private final JPanel blocksPanel;
 
 	public PieceSelectorScroll() {
 		blocksPanel = new JPanel();

@@ -7,8 +7,8 @@ import java.util.List;
 public class ColorFactory {
 
 	private final static int ALPHA = 160;
-	private static List<Color> colors = new ArrayList<>();
-	private static List<String> colorNames = new ArrayList<>();
+	private final static List<Color> colors = new ArrayList<>();
+	private final static List<String> colorNames = new ArrayList<>();
 	
 	public static void addColor(Color c){
 		Color alphaColor = new Color(c.getRed(), c.getGreen(), c.getBlue(), ALPHA);		

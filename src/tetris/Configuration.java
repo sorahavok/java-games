@@ -22,8 +22,6 @@ public class Configuration {
 	private static final String rootLoc = "res/tetris/";
 	private static final String CONFIG_FILE = rootLoc + "config.xml";
 	public static final String BLOCK_FILE = rootLoc + "imgs/squareImg.png";
-	// private static final String USER_BLOCK = "User Block";
-	// private static int userBlock = 0;
 
 	private static XStream xstream;
 	private static Configuration instance;

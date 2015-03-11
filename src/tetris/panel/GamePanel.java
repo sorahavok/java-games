@@ -27,7 +27,7 @@ import tetris.piece.Piece;
 public class GamePanel extends AbsPanel implements KeyListener {
 
 	// STATICS
-	private static final Logger log = Logger.getGlobal();
+	private static final Logger LOG = Logger.getGlobal();
 	private static final long serialVersionUID = 1L;
 	private static final int FPS = 60, NUM_BLOCKS_HIGH = 25, NUM_BLOCKS_WIDE = 10, AUTO_MOVE_DOWN_DEFAULT = 50;
 
@@ -51,7 +51,7 @@ public class GamePanel extends AbsPanel implements KeyListener {
 		scoreLabel = new JLabel("Score: " + score);
 		controller = config.getController();
 		scale = config.getHeight() / (NUM_BLOCKS_HIGH + 1);
-		log.config("Scale set to: " + scale);
+		LOG.config("Scale set to: " + scale);
 		dimension = new Dimension(NUM_BLOCKS_WIDE * scale, NUM_BLOCKS_HIGH * scale);
 
 		autoMoveDownCounter = 0;
@@ -98,7 +98,7 @@ public class GamePanel extends AbsPanel implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		log.finest("keyPressed: " + keyCode);
+		LOG.finest("keyPressed: " + keyCode);
 
 		Input input = controller.getInput(keyCode);
 
@@ -160,7 +160,7 @@ public class GamePanel extends AbsPanel implements KeyListener {
 
 	@Override
 	public void run() {
-		log.entering("GamePanel", "run()");
+		LOG.entering("GamePanel", "run()");
 		createNewPiece();
 		running = true;
 		gameOver = false;
@@ -173,13 +173,13 @@ public class GamePanel extends AbsPanel implements KeyListener {
 				}
 				Thread.sleep(1000 / FPS);
 			}
-			log.severe("GAME OVER!");
+			LOG.info("GAME OVER!");
 
 		}
 		catch (InterruptedException e) {
-			log.info("Game Panel Interrupted");
+			LOG.info("Game Panel Interrupted");
 		}
-		log.exiting("GamePanel", "run()");
+		LOG.exiting("GamePanel", "run()");
 	}
 
 	private void render() {

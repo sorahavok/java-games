@@ -14,5 +14,4 @@ public class PanelFactory {
 		System.err.println("Class tetris.panel." + panelName +" Not Found!");
 		return null;
 	}
-
 }

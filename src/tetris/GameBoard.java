@@ -17,7 +17,7 @@ public class GameBoard {
 	private List<Block[]> gameBoard;
 	private int height, width;
 
-	Logger log = Logger.getGlobal();
+	private static Logger LOG = Logger.getGlobal();
 
 	public GameBoard(int aWidth, int aHeight) {
 		height = aHeight;
@@ -71,7 +71,7 @@ public class GameBoard {
 
 	private void removeRows(List<Integer> rowsToRemove) {
 		for (int i : rowsToRemove) {
-			log.info("Row " + i + " Removed");
+			LOG.info("Row " + i + " Removed");
 			gameBoard.remove(i);
 			gameBoard.add(0, createBlockRow(0));
 		}

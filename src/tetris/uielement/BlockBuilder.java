@@ -18,7 +18,7 @@ import tetris.piece.Piece;
 
 public class BlockBuilder extends JPanel implements MouseListener {
 
-	private static final Logger log = Logger.getGlobal();
+	private static final Logger LOG = Logger.getGlobal();
 
 	private static final int SIZE = 300;
 
@@ -53,7 +53,7 @@ public class BlockBuilder extends JPanel implements MouseListener {
 		int x = e.getX() / scale;
 		int y = e.getY() / scale;
 		int key = x * 10 + y; // easy to Mod back apart
-		log.severe(x + "," + y + "[" + key + "]");
+		LOG.severe(x + "," + y + "[" + key + "]");
 
 		if (blocks.get(key) == null) {
 			Block block = new Block(x, y);
