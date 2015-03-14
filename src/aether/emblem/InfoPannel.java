@@ -1,8 +1,10 @@
 package aether.emblem;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
 public class InfoPannel extends JPanel
 
@@ -32,8 +34,7 @@ public class InfoPannel extends JPanel
 
 		if(Attacker != null) {
 			CharInfo(page, Attacker);
-			int DefenderLoc = Generator.Map.getNum(FieldDriver.gridImageX, FieldDriver.gridImageY,
-					2);
+			int DefenderLoc = Generator.Map.getNum(FieldDriver.gridImageX, FieldDriver.gridImageY, 2);
 			if(DefenderLoc != 0) {
 				Defender = Generator.ListBlue.get(DefenderLoc - 1);
 			}
@@ -51,7 +52,6 @@ public class InfoPannel extends JPanel
 			}
 		}
 		paintEnv(page);
-
 	}
 
 	public void paintEnv(Graphics page) {
@@ -94,7 +94,7 @@ public class InfoPannel extends JPanel
 	}
 
 	public void CharString(Graphics page, Character charStats) {
-		if(charStats.Alive == true) {
+		if(charStats.alive == true) {
 			if(charStats.getTeam() == 1)
 				page.drawImage(Generator.BlueTextBg, Space(2 + sizeMod) - 1, 24, 63, 58, this);
 			if(charStats.getTeam() == 2)

@@ -1,11 +1,16 @@
 package aether.emblem;
 
-import java.awt.*;
-
-import javax.swing.*;
-
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.List;
+
+import javax.swing.JPanel;
 
 public class FieldDriver extends JPanel implements MouseMotionListener, MouseListener {
 	private static final long serialVersionUID = 1L;
@@ -51,16 +56,15 @@ public class FieldDriver extends JPanel implements MouseMotionListener, MouseLis
 		drawField(page);
 		if(objectOnField > 0)
 			movementSquares(page, objectOnField - 1);
-		Graphics2D g2 = (Graphics2D) page;
-		g2.drawImage(image, imageX, imageY, this);
+		page.drawImage(image, imageX, imageY, this);
 		if(selected == false && selected2 == true) {
-			moveChracter(page, CharacterTurn.get(objectOnField - 1));
+			moveChracter(CharacterTurn.get(objectOnField - 1));
 		}
 		if(toAttack != null && Defender == null && objectOnField == 0) {
 			AttackSquares(page, toAttack);
 		}
-		if(attack == true) {
-			attackChracter(page, toAttack, Defender);
+		if(attack) {
+			attackChracter(toAttack, Defender);
 			toAttack = null;
 			Defender = null;
 			attack = false;
@@ -181,7 +185,7 @@ public class FieldDriver extends JPanel implements MouseMotionListener, MouseLis
 		repaint();
 	}
 
-	public void moveChracter(Graphics page, Character toMove) {
+	public void moveChracter(Character toMove) {
 		moveRange = toMove.getMovement();
 		int XMotion = (MoveToX - XMouseMove);
 		int YMotion = (MoveToY - YMouseMove);
@@ -217,27 +221,27 @@ public class FieldDriver extends JPanel implements MouseMotionListener, MouseLis
 
 	}
 
-	public void attackChracter(Graphics page, Character toAttack, Character toDef) {
-		new Battle(toAttack, toDef);
+	public void attackChracter(Character attacker, Character defender) {
+		new Battle(attacker, defender);
 	}
 
-	public void AttackSquares(Graphics page, Character toAttack) {
-		int attackRange = toAttack.getRange() + 1;
-		for(int xAxis = -toAttack.getRange(); xAxis < attackRange; xAxis++)
-			for(int yAxis = -toAttack.getRange(); yAxis < attackRange; yAxis++) {
-				if(toAttack.getXLocation() + xAxis >= 0
-						&& toAttack.getXLocation() + xAxis < field.getSize()
-						&& toAttack.getYLocation() + yAxis >= 0
-						&& toAttack.getYLocation() + yAxis < field.getSize())
+	public void AttackSquares(Graphics page, Character attacker) {
+		int attackRange = attacker.getRange() + 1;
+		for(int xAxis = -attacker.getRange(); xAxis < attackRange; xAxis++)
+			for(int yAxis = -attacker.getRange(); yAxis < attackRange; yAxis++) {
+				if(attacker.getXLocation() + xAxis >= 0
+						&& attacker.getXLocation() + xAxis < field.getSize()
+						&& attacker.getYLocation() + yAxis >= 0
+						&& attacker.getYLocation() + yAxis < field.getSize())
 					if(attackRange > xAxis + yAxis && -attackRange < -xAxis + yAxis
 							&& -attackRange < xAxis - yAxis && attackRange > -xAxis - yAxis
 							&& xAxis * yAxis + xAxis + yAxis != 0) {
-						page.drawImage(Generator.Red_SquareImg, (toAttack.getXLocation() + xAxis)
-								* PicSize, (toAttack.getYLocation() + yAxis) * PicSize, PicSize,
+						page.drawImage(Generator.Red_SquareImg, (attacker.getXLocation() + xAxis)
+								* PicSize, (attacker.getYLocation() + yAxis) * PicSize, PicSize,
 								PicSize, this);
 					}
 			}
-		InfoPannel.Attacker = toAttack;
+		InfoPannel.Attacker = attacker;
 	}
 
 	public void movementSquares(Graphics page, int x) {
