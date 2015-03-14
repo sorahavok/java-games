@@ -3,9 +3,9 @@ package aether.emblem;
 import java.awt.*;
 
 public class SwordChar extends Character {
-	Image CharacterImage;
+	private Image CharacterImage;
 
-	SwordChar(String title, int hp, int attack, int def, int skill, Weapon wep, int xLocation,
+	public SwordChar(String title, int hp, int attack, int def, int skill, Weapon wep, int xLocation,
 			int yLocation, int team) {
 		super(title, hp, attack, def, skill, wep, xLocation, yLocation, team);
 		// int gender = (int)(Math.random()*2);

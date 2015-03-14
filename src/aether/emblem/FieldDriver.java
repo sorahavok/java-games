@@ -14,17 +14,18 @@ import javax.swing.JPanel;
 
 public class FieldDriver extends JPanel implements MouseMotionListener, MouseListener {
 	private static final long serialVersionUID = 1L;
-	private int APPLET_WIDTH = Generator.appletWidth, APPLET_HEIGHT = Generator.appletHeight;
+	private static final int APPLET_WIDTH = Generator.appletWidth;
+	private static final int APPLET_HEIGHT = Generator.appletHeight;
 	private Field field = Generator.Map;
 	private int PicSize = APPLET_HEIGHT / field.getSize();
 	private Image image;
 	public Point currentPoint;
-	public int imageX, imageY, MoveToX, MoveToY, YMouseMove, moveRange, turn = 0, battle = 1;
+	public int imageX, imageY, MoveToX, MoveToY, YMouseMove, turn = 0, battle = 1;
 	public int objectOnField, XMouseMove;
 	public static int gridImageY = 0, gridImageX = 0;
 	private boolean selected = false, selected2 = false, attack = false;
-	private List<Character> CharacterTurn = Generator.ListBlue;
-	private List<Character> CharacterWait = Generator.ListRed;
+	private List<Character> CharacterTurn = Generator.getBlueList();
+	private List<Character> CharacterWait = Generator.getRedList();
 	private Character toAttack, Defender;
 
 	public FieldDriver(Image i) {
@@ -90,11 +91,11 @@ public class FieldDriver extends JPanel implements MouseMotionListener, MouseLis
 			}
 		}
 
-		for(Character character : Generator.ListRed) {
+		for(Character character : Generator.getRedList()) {
 			page.drawImage(character.getImage(), character.getXLocation() * PicSize,
 					character.getYLocation() * PicSize, PicSize, PicSize, this);
 		}
-		for(Character character : Generator.ListBlue) {
+		for(Character character : Generator.getBlueList()) {
 			page.drawImage(character.getImage(), character.getXLocation() * PicSize,
 					character.getYLocation() * PicSize, PicSize, PicSize, this);
 		}
@@ -150,13 +151,13 @@ public class FieldDriver extends JPanel implements MouseMotionListener, MouseLis
 				CharacterTurn.get(AllMoved).setMoved(false);
 			}
 			if(CharacterTurn == Generator.getBlueList()) {
-				CharacterTurn = Generator.ListRed;
-				CharacterWait = Generator.ListBlue;
+				CharacterTurn = Generator.getRedList();
+				CharacterWait = Generator.getBlueList();
 				turn = 1;
 				battle = 0;
 			} else {
-				CharacterTurn = Generator.ListBlue;
-				CharacterWait = Generator.ListRed;
+				CharacterTurn = Generator.getRedList();
+				CharacterWait = Generator.getBlueList();
 				turn = 0;
 				battle = 1;
 			}
@@ -185,40 +186,36 @@ public class FieldDriver extends JPanel implements MouseMotionListener, MouseLis
 		repaint();
 	}
 
-	public void moveChracter(Character toMove) {
-		moveRange = toMove.getMovement();
+	public void moveChracter(Character character) {
+		int moveRange = character.getMovement();
 		int XMotion = (MoveToX - XMouseMove);
 		int YMotion = (MoveToY - YMouseMove);
-		int RelocateX = (XMotion) + toMove.getXLocation();
-		int RelocateY = (YMotion) + toMove.getYLocation();
+		int xLocation = character.getXLocation();
+		int yLocation = character.getYLocation();
+		int RelocateX = (XMotion) + xLocation;
+		int RelocateY = (YMotion) + yLocation;
 
-		field.setNum(toMove.getXLocation(), toMove.getYLocation(), (2 + turn), 0);
-		if(RelocateX >= 0 && RelocateX < field.getSize() && RelocateY >= 0
-				&& RelocateY < field.getSize())
+		field.setNum(xLocation, yLocation, (2 + turn), 0);
+		if(RelocateX >= 0 && RelocateX < field.getSize() && RelocateY >= 0 && RelocateY < field.getSize())
 			if(moveRange >= XMotion + YMotion
 					&& -moveRange <= -XMotion + YMotion
 					&& -moveRange <= XMotion - YMotion
 					&& moveRange >= -XMotion - YMotion
-					&& field.getNum(toMove.getXLocation() + XMotion, toMove.getYLocation()
-							+ YMotion, 0) != 2
-					&& field.getNum(toMove.getXLocation() + XMotion, toMove.getYLocation()
-							+ YMotion, 2) == 0
-					&& field.getNum(toMove.getXLocation() + XMotion, toMove.getYLocation()
-							+ YMotion, 3) == 0) {
-				toMove.setXLocation(RelocateX);
-				toMove.setYLocation(RelocateY);
-				toMove.setSelected(false);
-				toMove.setMoved(true);
+					&& field.getNum(xLocation + XMotion, yLocation + YMotion, 0) != 2
+					&& field.getNum(xLocation + XMotion, yLocation + YMotion, 2) == 0
+					&& field.getNum(xLocation + XMotion, yLocation + YMotion, 3) == 0) {
+				character.setXLocation(RelocateX);
+				character.setYLocation(RelocateY);
+				character.setSelected(false);
+				character.setMoved(true);
 				objectOnField = 0;
-				field.setNum(toMove.getXLocation(), toMove.getYLocation(), (2 + turn),
-						toMove.getListPosition());
-				toAttack = toMove;
+				field.setNum(xLocation, yLocation, (2 + turn),
+						character.getListPosition());
+				toAttack = character;
 				repaint();
 			}
-		field.setNum(toMove.getXLocation(), toMove.getYLocation(), (2 + turn),
-				toMove.getListPosition());
+		field.setNum(xLocation, yLocation, (2 + turn), character.getListPosition());
 		selected2 = false;
-
 	}
 
 	public void attackChracter(Character attacker, Character defender) {
@@ -245,30 +242,29 @@ public class FieldDriver extends JPanel implements MouseMotionListener, MouseLis
 	}
 
 	public void movementSquares(Graphics page, int x) {
-		// toAttack=null;
-		// Defender=null;
-		moveRange = CharacterTurn.get(x).getMovement();
+		final Character character = CharacterTurn.get(x);
+		final int moveRange = character.getMovement();
 		for(int xPossMove = -moveRange; xPossMove < moveRange + 1; xPossMove++)
 			for(int yPossMove = -moveRange; yPossMove < moveRange + 1; yPossMove++) {
-				if(CharacterTurn.get(x).getXLocation() + xPossMove >= 0
-						&& CharacterTurn.get(x).getXLocation() + xPossMove < field.getSize()
-						&& CharacterTurn.get(x).getYLocation() + yPossMove >= 0
-						&& CharacterTurn.get(x).getYLocation() + yPossMove < field.getSize())
+				if(character.getXLocation() + xPossMove >= 0
+						&& character.getXLocation() + xPossMove < field.getSize()
+						&& character.getYLocation() + yPossMove >= 0
+						&& character.getYLocation() + yPossMove < field.getSize())
 					if(moveRange >= xPossMove + yPossMove
 							&& -moveRange <= -xPossMove + yPossMove
 							&& -moveRange <= xPossMove - yPossMove
 							&& moveRange >= -xPossMove - yPossMove
-							&& field.getNum(CharacterTurn.get(x).getXLocation() + xPossMove,
-									CharacterTurn.get(x).getYLocation() + yPossMove, 0) != 2
-							&& field.getNum(CharacterTurn.get(x).getXLocation() + xPossMove,
-									CharacterTurn.get(x).getYLocation() + yPossMove, 2) == 0
-							&& field.getNum(CharacterTurn.get(x).getXLocation() + xPossMove,
-									CharacterTurn.get(x).getYLocation() + yPossMove, 3) == 0
-							&& CharacterTurn.get(x).getMoved() == false
+							&& field.getNum(character.getXLocation() + xPossMove,
+									character.getYLocation() + yPossMove, 0) != 2
+							&& field.getNum(character.getXLocation() + xPossMove,
+									character.getYLocation() + yPossMove, 2) == 0
+							&& field.getNum(character.getXLocation() + xPossMove,
+									character.getYLocation() + yPossMove, 3) == 0
+							&& character.getMoved() == false
 							|| Math.abs(xPossMove) + Math.abs(yPossMove) == 0)
 						page.drawImage(Generator.Green_SquareImg,
-								(CharacterTurn.get(x).getXLocation() + xPossMove) * PicSize,
-								(CharacterTurn.get(x).getYLocation() + yPossMove) * PicSize, PicSize,
+								(character.getXLocation() + xPossMove) * PicSize,
+								(character.getYLocation() + yPossMove) * PicSize, PicSize,
 								PicSize, this);
 			}
 	}

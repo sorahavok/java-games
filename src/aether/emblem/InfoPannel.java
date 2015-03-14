@@ -36,11 +36,11 @@ public class InfoPannel extends JPanel
 			CharInfo(page, Attacker);
 			int DefenderLoc = Generator.Map.getNum(FieldDriver.gridImageX, FieldDriver.gridImageY, 2);
 			if(DefenderLoc != 0) {
-				Defender = Generator.ListBlue.get(DefenderLoc - 1);
+				Defender = Generator.getBlueList().get(DefenderLoc - 1);
 			}
 			DefenderLoc = Generator.Map.getNum(FieldDriver.gridImageX, FieldDriver.gridImageY, 3);
 			if(DefenderLoc != 0) {
-				Defender = Generator.ListRed.get(DefenderLoc - 1);
+				Defender = Generator.getRedList().get(DefenderLoc - 1);
 			}
 
 		}
@@ -82,10 +82,10 @@ public class InfoPannel extends JPanel
 		blueChar = Generator.Map.getNum(FieldDriver.gridImageX, FieldDriver.gridImageY, 2);
 		redChar = Generator.Map.getNum(FieldDriver.gridImageX, FieldDriver.gridImageY, 3);
 		if(blueChar != 0) {
-			CharString(page, Generator.ListBlue.get(blueChar - 1));
+			CharString(page, Generator.getBlueList().get(blueChar - 1));
 		}
 		if(redChar != 0) {
-			CharString(page, Generator.ListRed.get(redChar - 1));
+			CharString(page, Generator.getRedList().get(redChar - 1));
 		}
 	}
 

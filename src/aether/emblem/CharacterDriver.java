@@ -16,10 +16,10 @@ public class CharacterDriver {
 		Generator.addCharacter(new SwordChar("Myrmidon", 65, 25, 10, 20, Generator.Sword, 3, 3, 2));
 		Generator.addCharacter(new LanceChar("Pikeman", 80, 20, 20, 15, Generator.Lance, 4, 4, 2));
 
-		System.out.println("Blue List:" + Generator.ListBlue.size() + "\n\n"
-				+ Generator.toString(Generator.ListBlue));
-		System.out.println("Red List:" + Generator.ListRed.size() + "\n\n"
-				+ Generator.toString(Generator.ListRed));
+		System.out.println("Blue List:" + Generator.getBlueList().size() + "\n\n"
+				+ Generator.toString(Generator.getBlueList()));
+		System.out.println("Red List:" + Generator.getRedList().size() + "\n\n"
+				+ Generator.toString(Generator.getRedList()));
 
 		// System.out.println("\n----------------------------------\n");
 		// for(int x=0;x<CharacterList.length;x++)

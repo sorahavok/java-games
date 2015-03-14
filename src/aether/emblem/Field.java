@@ -1,13 +1,15 @@
 package aether.emblem;
 
 public class Field {
-	public int[][][] Field;
-	public int Size, Depth, count, waterStart;
+	private final int[][][] Field;
+	private final int size;
+	private final int depth;
+	private int waterStart;
 
 	public Field(int Dimention, int Plane) {
 		Field = new int[Dimention][Dimention][Plane];
-		Size = Dimention;
-		Depth = Plane;
+		size = Dimention;
+		depth = Plane;
 		this.setField();
 	}
 
@@ -26,14 +28,14 @@ public class Field {
 
 	}
 
-	public int[][][] setField() {
+	private void setField() {
 		// 0=Grass 1=Mud/Mountan/Wall 2=water
 		int direction, current_x = 0;
 		int theSize = this.getSize();
 		int current_y = (int) ((Math.random() * (theSize - (theSize * .85))) + theSize / 2);
 		waterStart = current_y;
-		for(int y = 0; y < Size; y++)
-			for(int x = 0; x < Size; x++) {// if field is grass, which is defalt
+		for(int y = 0; y < size; y++)
+			for(int x = 0; x < size; x++) {// if field is grass, which is defalt
 				if(Field[x][y][0] == 0 || Field[x][y][0] == 2)
 				// create a new random terain with 0&2=grass 1=Mud/Mountan/Wall
 				{
@@ -140,18 +142,17 @@ public class Field {
 					Field[x][y][1] = 0;
 				}
 			}
-		return Field;
 	}
 
 	@Override
 	public String toString() {
 
 		String Grid = new String("[");
-		for(int z = 0; z < Depth; z++) {
+		for(int z = 0; z < depth; z++) {
 			Grid += "\n\n";
-			for(int y = 0; y < Size; y++) {
+			for(int y = 0; y < size; y++) {
 				Grid += "]\n[";
-				for(int x = 0; x < Size; x++)
+				for(int x = 0; x < size; x++)
 					Grid += "," + Field[x][y][z];
 			}
 		}
@@ -160,11 +161,11 @@ public class Field {
 	}
 
 	public int getSize() {
-		return Size;
+		return size;
 	}
 
 	public int getDepth() {
-		return Depth;
+		return depth;
 	}
 
 	public int getNum(int x, int y, int z) {

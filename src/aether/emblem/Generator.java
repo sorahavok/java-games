@@ -9,9 +9,8 @@ import java.util.stream.Collectors;
 public class Generator {
 	private static final String IMG_PATH = "res/aether-emblem/";
 	private static final int BLUE_TEAM = 1;
-
-	public static List<Character> ListBlue = new ArrayList<>();
-	public static List<Character> ListRed = new ArrayList<>();
+	private static final List<Character> ListBlue = new ArrayList<>();
+	private static final List<Character> ListRed = new ArrayList<>();
 
 	public static void addCharacter(Character character) {
 		List<Character> team = character.getTeam() == BLUE_TEAM ? ListBlue : ListRed;
@@ -77,7 +76,6 @@ public class Generator {
 	static Image waterImg = Toolkit.getDefaultToolkit().getImage(IMG_PATH + "Tile_Water.jpg");
 	static Image bridgeImg = Toolkit.getDefaultToolkit().getImage(IMG_PATH + "bridge.png");
 	// Int Declaration -- Int Declaration -- Int Declaration -- Int Declaration --
-	static boolean moved;
 	static int mouseMoveX, mouseMoveY;
 	static int countteam1 = 1;
 	static int countteam2 = 1;

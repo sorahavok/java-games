@@ -3,9 +3,9 @@ package aether.emblem;
 import java.awt.*;
 
 public class AxeChar extends Character {
-	Image CharacterImage = Generator.axeImg;
+	private Image CharacterImage = Generator.axeImg;
 
-	AxeChar(String title, int hp, int attack, int def, int skill, Weapon wep, int xLocation,
+	public AxeChar(String title, int hp, int attack, int def, int skill, Weapon wep, int xLocation,
 			int yLocation, int team) {
 		super(title, hp, attack, def, skill, wep, xLocation, yLocation, team);
 		/*

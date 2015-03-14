@@ -3,10 +3,10 @@ package aether.emblem;
 import java.awt.Image;
 
 public class HeroChar extends Character {
-	Image CharacterImage = Generator.heroImg;
-	public String Type;
+	private Image CharacterImage = Generator.heroImg;
+	private String Type;
 
-	HeroChar(String title, int hp, int attack, int def, int skill, Weapon wep, int xLocation,
+	public HeroChar(String title, int hp, int attack, int def, int skill, Weapon wep, int xLocation,
 			int yLocation, int team) {
 		super(title, hp, attack, def, skill, wep, xLocation, yLocation, team);
 		Type = title;
