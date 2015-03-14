@@ -5,7 +5,6 @@ public class Field
     public int[][][] Field;
     public int Size,Depth,count,waterStart;
     
-    
     public Field(int Dimention,int Plane)
     {
         Field= new int[Dimention][Dimention][Plane];
@@ -16,17 +15,17 @@ public class Field
     public void setCharacters()
     {
     	int SetX,SetY;
-    	for(int x=0;x<Generator.getBlueList().length;x++)
+    	for(Character character : Generator.getBlueList())
         {
-            SetX=Generator.getBlueList()[x].getXLocation();
-            SetY=Generator.getBlueList()[x].getYLocation();
-            this.setNum(SetX,SetY,2,Generator.getBlueList()[x].getListPosition());
+            SetX=character.getXLocation();
+            SetY=character.getYLocation();
+            this.setNum(SetX,SetY,2,character.getListPosition());
         }
-    	for(int y=0;y<Generator.getRedList().length;y++)
+    	for(Character character : Generator.getRedList())
         {
-            SetX=Generator.getRedList()[y].getXLocation();
-            SetY=Generator.getRedList()[y].getYLocation();
-            this.setNum(SetX,SetY,3,Generator.getRedList()[y].getListPosition());
+    		SetX=character.getXLocation();
+            SetY=character.getYLocation();
+            this.setNum(SetX,SetY,3,character.getListPosition());
         }
         
     }
@@ -48,8 +47,10 @@ public class Field
                             Field[x][y][0]=(int)(Math.random()*8);
                             if(Field[x][y][0]==2 || Field[x][y][0]==3 ||
                                Field[x][y][0]==4 || Field[x][y][0]==5 ||
-                               Field[x][y][0]==6 || Field[x][y][0]==7)
-                                Field[x][y][0]=0;
+                               Field[x][y][0]==6 || Field[x][y][0]==7) {
+                            	Field[x][y][0]=0;
+                            }
+                                
                         }
                         //set location of water
                         if(x==0&&y==0)
@@ -135,9 +136,9 @@ public class Field
                                     }
                                 }
                         }
-                  //take the ground and create its terain effects into
-                  // the next layer 0=Grass 1=Mud/Mountan/Wall 2=water 3=bridge
-                  //grass =0= passabal bridge =0= passabal Mountan =1= slow move
+                  //take the ground and create its terrain effects into
+                  // the next layer 0=Grass 1=Mud/Mountain/Wall 2=water 3=bridge
+                  //grass =0= pass-able bridge =0= pass-able Mountain =1= slow move
                   //water =2= cannot enter  
                   if(Field[x][y][0]==0)
                     {Field[x][y][1]=0;}
@@ -150,7 +151,8 @@ public class Field
                   }
        return Field;
     }
-    public String toString()
+    @Override
+	public String toString()
     {
         
         String Grid = new String("[");

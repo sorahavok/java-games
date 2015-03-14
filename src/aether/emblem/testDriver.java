@@ -16,6 +16,5 @@ public class testDriver extends JPanel
         fieldFrame.getContentPane().add (box,BorderLayout.CENTER);
         fieldFrame.setVisible(true);
         fieldFrame.pack();
-        fieldFrame.show();
     }
 }
