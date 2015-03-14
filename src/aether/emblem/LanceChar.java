@@ -3,7 +3,7 @@ package aether.emblem;
 import java.awt.*;
 
 public class LanceChar extends Character {
-	Image CharacterImage = Generator.lanceImg;
+	Image characterImage = Generator.lanceImg;
 
 	LanceChar(String title, int hp, int attack, int def, int skill, Weapon wep, int xLocation,
 			int yLocation, int team) {
@@ -22,22 +22,22 @@ public class LanceChar extends Character {
 		}
 
 		if(this.getTeam() == 1) {
-			CharacterFace = Generator.FacePikemanFemale;
+			characterFace = Generator.FacePikemanFemale;
 			if(this.getMoved() == false)
-				CharacterImage = Generator.lanceImg;
+				characterImage = Generator.lanceImg;
 			else {
-				CharacterImage = Generator.graylanceImg;
+				characterImage = Generator.graylanceImg;
 			}
 		}
 		if(this.getTeam() == 2) {
-			CharacterFace = Generator.FacePikemanMale;
+			characterFace = Generator.FacePikemanMale;
 			if(this.getMoved() == false)
-				CharacterImage = Generator.redlanceImg;
+				characterImage = Generator.redlanceImg;
 			else {
-				CharacterImage = Generator.grayredlanceImg;
+				characterImage = Generator.grayredlanceImg;
 			}
 		}
-		return CharacterImage;
+		return characterImage;
 	}
 
 	@Override

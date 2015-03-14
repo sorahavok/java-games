@@ -3,26 +3,26 @@ package aether.emblem;
 import java.awt.*;
 
 public abstract class Character {
-	public int HitPoints, Attack, Defence, HitPercent, xLocate;
+	public int hitPoints, attack, defence, hitPercent, xLocate;
 	public int yLocate, ListPosition, Team;
-	public Weapon Weapon;
-	public String Name;
-	protected Image CharacterFace;
+	public Weapon weapon;
+	public String name;
+	protected Image characterFace;
 	public boolean Moved, Selected, alive;
 
 	// Name, Hit Points, Attack Power, Defense, Hit Chance,
 	// Weapon, X-Location, Y-Location, Team (1-blue 2-red)
 	public Character(String title, int hp, int attack, int def, int skill, Weapon wep,
 			int xLocation, int yLocation, int team) {
-		Name = title;
-		HitPoints = hp;
-		Attack = attack;
-		Defence = def;
-		Weapon = wep;
-		HitPercent = skill;
-		xLocate = xLocation;
-		yLocate = yLocation;
-		alive = true;
+		this.name = title;
+		this.hitPoints = hp;
+		this.attack = attack;
+		this.defence = def;
+		this.weapon = wep;
+		this.hitPercent = skill;
+		this.xLocate = xLocation;
+		this.yLocate = yLocation;
+		this.alive = true;
 		if(team == 1) {
 			ListPosition = Generator.countteam1++;
 		}
@@ -36,11 +36,11 @@ public abstract class Character {
 	}
 
 	public int getHp() {
-		return HitPoints;
+		return hitPoints;
 	}
 
 	public void setHp(int x) {
-		HitPoints = x;
+		hitPoints = x;
 		if(x <= 0) {
 			alive = false;
 			Generator.Map.setNum(xLocate, yLocate, 1 + Team, 0);
@@ -49,29 +49,29 @@ public abstract class Character {
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public int getAttack() {
-		return Attack + Weapon.getAttackBonus();
+		return attack + weapon.getAttackBonus();
 	}
 
 	public int getDefence() {
-		int DefPlus = 0;
-		int CurrentTerrain = Generator.Map.getNum(xLocate, yLocate, 0);
-		if(CurrentTerrain == 0)
-			DefPlus = 1;
-		if(CurrentTerrain == 3)
-			DefPlus = 2;
-		return Defence + DefPlus;
+		int defPlus = 0;
+		int currentTerrain = Generator.Map.getNum(xLocate, yLocate, 0);
+		if(currentTerrain == 0)
+			defPlus = 1;
+		if(currentTerrain == 3)
+			defPlus = 2;
+		return defence + defPlus;
 	}
 
-	public Weapon getWeapon() {
-		return Weapon;
+	public int getHitChance() {
+		return weapon.getHitChance();
 	}
-
+	
 	public void setWeapon(Weapon wep) {
-		Weapon = wep;
+		weapon = wep;
 	}
 
 	public int getHitPercent() {
@@ -81,13 +81,13 @@ public abstract class Character {
 			HitPlus = 10;
 		if(CurrentTerrain == 1)
 			HitPlus = 20;
-		return HitPercent + HitPlus;
+		return hitPercent + HitPlus;
 	}
 
 	@Override
 	public String toString() {
-		return "Name: " + Name + "\nHp: " + HitPoints + "\nAttack: " + Attack + "\nDefence: "
-				+ Defence + "\nSkill: " + HitPercent + "\n" + Weapon + "\nList Position: "
+		return "Name: " + name + "\nHp: " + hitPoints + "\nAttack: " + attack + "\nDefence: "
+				+ defence + "\nSkill: " + hitPercent + "\n" + weapon + "\nList Position: "
 				+ ListPosition + "\n";
 	}
 
@@ -142,10 +142,10 @@ public abstract class Character {
 
 	public int[] getStats() {
 		int[] Stats = new int[4];
-		Stats[0] = HitPoints;
+		Stats[0] = hitPoints;
 		Stats[1] = this.getAttack();
-		Stats[2] = Defence;
-		Stats[3] = HitPercent + this.Weapon.getHitChance();
+		Stats[2] = defence;
+		Stats[3] = hitPercent + this.weapon.getHitChance();
 		return Stats;
 	}
 
@@ -160,6 +160,6 @@ public abstract class Character {
 	public abstract Image getImage();
 
 	public Image getFaceImage() {
-		return alive ? CharacterFace : Generator.remove;
+		return alive ? characterFace : Generator.remove;
 	}
 }

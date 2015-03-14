@@ -23,7 +23,7 @@ public class HeroChar extends Character {
 		}
 
 		if(this.getTeam() == 1) {
-			CharacterFace = Generator.FaceHeroFemale;
+			characterFace = Generator.FaceHeroFemale;
 			if(this.getMoved() == false)
 				CharacterImage = Generator.heroImg;
 			else {
@@ -31,7 +31,7 @@ public class HeroChar extends Character {
 			}
 		}
 		if(this.getTeam() == 2) {
-			CharacterFace = Generator.FaceHeroMale;
+			characterFace = Generator.FaceHeroMale;
 			if(this.getMoved() == false)
 				CharacterImage = Generator.redheroImg;
 			else {

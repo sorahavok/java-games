@@ -28,7 +28,7 @@ public class AxeChar extends Character {
 			}
 		}
 		if(this.getTeam() == 2) {
-			CharacterFace = Generator.FaceFighterFemale;
+			characterFace = Generator.FaceFighterFemale;
 			if(this.getMoved() == false)
 				CharacterImage = Generator.redaxeImg;
 			else {

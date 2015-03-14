@@ -22,7 +22,7 @@ public class SwordChar extends Character {
 		}
 		
 		if(this.getTeam() == 1) {
-			CharacterFace = Generator.FaceSwordMale;
+			characterFace = Generator.FaceSwordMale;
 			if(this.getMoved() == false)
 				CharacterImage = Generator.swordImg;
 			else {
@@ -30,7 +30,7 @@ public class SwordChar extends Character {
 			}
 		}
 		if(this.getTeam() == 2) {
-			CharacterFace = Generator.FaceSwordFemale;
+			characterFace = Generator.FaceSwordFemale;
 			if(this.getMoved() == false)
 				CharacterImage = Generator.redswordImg;
 			else {

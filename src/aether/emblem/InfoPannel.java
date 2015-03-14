@@ -89,8 +89,8 @@ public class InfoPannel extends JPanel
 		}
 	}
 
-	public void CharInfo(Graphics page, Character Attacker) {
-		CharString(page, Attacker);
+	public void CharInfo(Graphics page, Character attacker) {
+		CharString(page, attacker);
 	}
 
 	public void CharString(Graphics page, Character charStats) {
