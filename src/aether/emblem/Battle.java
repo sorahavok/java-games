@@ -1,76 +1,60 @@
 package aether.emblem;
 
 public class Battle {
-	public Character Attacker;
-	public Character Defender;
-	public String Outcome = "";
-	public String REOutcome = "";
-
 	// --------------------------------------------------------
 	// this creates a Battle, takes Attacking and Defending Characters
 	// --------------------------------------------------------
-	public Battle(Character Atta, Character Defend) {
-		Attacker = Atta;
-		Defender = Defend;
-		this.attack();
-	}
 
-	public void attack() {
-		String AttackName = Attacker.getName();
-		String DefenderName = Defender.getName();
-		if(Attacker.getTeam() == 1) {
-			AttackName = "Blue " + AttackName;
-			DefenderName = "Red " + DefenderName;
+	public static void fight(Character attacker, Character defender) {
+		String attackText = "";
+		String defenceText = "";
+		String attackerName = attacker.getName();
+		String defenderName = defender.getName();
+		if(attacker.getTeam() == 1) {
+			attackerName = "Blue " + attackerName;
+			defenderName = "Red " + defenderName;
 		} else {
-			AttackName = "Red " + AttackName;
-			DefenderName = "Blue " + DefenderName;
+			attackerName = "Red " + attackerName;
+			defenderName = "Blue " + defenderName;
 		}
 
-		Outcome += "\nBattle " + AttackName + " vs. " + DefenderName + "\n";
-		int HitChance = Attacker.getWeapon().getHitChance() + Attacker.getHitPercent() * 2;
-		if(HitChance >= Math.random() * 100) {
+		attackText += "\nBattle " + attackerName + " vs. " + defenderName + "\n";
+		int hitChance = attacker.getHitChance() + attacker.getHitPercent() * 2;
+		if(hitChance >= Math.random() * 100) {
 			// this tests if the attack damage will be greater than 0
-			if(Attacker.getAttack() - Defender.getDefence() > 0) {
-				int damage = Attacker.getAttack() - Defender.getDefence();
-				Defender.setHp(Defender.getHp() - damage);
-				Outcome += AttackName + " Deals " + damage + " to " + DefenderName + " reducing "
-						+ DefenderName + "'s Hit Points to " + Defender.getHp();
+			if(attacker.getAttack() - defender.getDefence() > 0) {
+				int damage = attacker.getAttack() - defender.getDefence();
+				defender.setHp(defender.getHp() - damage);
+				attackText += attackerName + " Deals " + damage + " to " + defenderName + " reducing "
+						+ defenderName + "'s Hit Points to " + defender.getHp();
 			} else {
-				Outcome += AttackName + "'s Attack Deals No Damage";
+				attackText += attackerName + "'s Attack Deals No Damage";
 			}
 		} else {
-			Outcome += AttackName + "'s Attack Missed";
+			attackText += attackerName + "'s Attack Missed";
 		}
-		if(Defender.getHp() > 0) {
-			int REHitChance = Defender.getWeapon().getHitChance() + Defender.getHitPercent() * 2;
+		if(defender.getHp() > 0) {
+			int REHitChance = defender.getHitChance() + defender.getHitPercent() * 2;
 			if(REHitChance >= Math.random() * 100) {
-				if(Defender.getAttack() - Attacker.getDefence() > 0) {
-					int damage = Defender.getAttack() - Attacker.getDefence();
-					Attacker.setHp(Attacker.getHp() - damage);
-					REOutcome += "In Response " + DefenderName + " Deals " + damage + " to "
-							+ AttackName + " reducing " + AttackName + "'s Hit Points to "
-							+ Attacker.getHp();
-					if(Attacker.getHp() <= 0)
-						REOutcome += "\n" + AttackName + " Has Been Killed!";
+				if(defender.getAttack() - attacker.getDefence() > 0) {
+					int damage = defender.getAttack() - attacker.getDefence();
+					attacker.setHp(attacker.getHp() - damage);
+					defenceText += "In Response " + defenderName + " Deals " + damage + " to "
+							+ attackerName + " reducing " + attackerName + "'s Hit Points to "
+							+ attacker.getHp();
+					if(attacker.getHp() <= 0)
+						defenceText += "\n" + attackerName + " Has Been Killed!";
 				} else {
-					REOutcome += DefenderName + "'s Attack Deals No Damage";
+					defenceText += defenderName + "'s Attack Deals No Damage";
 				}
 			} else {
-				REOutcome += DefenderName + "'s Attack Missed";
+				defenceText += defenderName + "'s Attack Missed";
 			}
 
 		} else {
-			REOutcome += DefenderName + " Has Been Killed!";
+			defenceText += defenderName + " Has Been Killed!";
 		}
-		System.out.print(this);
-	}
-
-	@Override
-	public String toString() {
-		return Outcome + "\n" + REOutcome;
-	}
-
-	public String toFeildString() {
-		return Outcome + "\n" + REOutcome;
+		System.out.println(attackText);
+		System.out.println(defenceText);
 	}
 }

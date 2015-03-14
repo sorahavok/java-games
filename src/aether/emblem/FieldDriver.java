@@ -222,7 +222,7 @@ public class FieldDriver extends JPanel implements MouseMotionListener, MouseLis
 	}
 
 	public void attackChracter(Character attacker, Character defender) {
-		new Battle(attacker, defender);
+		Battle.fight(attacker, defender);
 	}
 
 	public void AttackSquares(Graphics page, Character attacker) {
