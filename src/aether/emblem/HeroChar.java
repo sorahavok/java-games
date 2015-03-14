@@ -4,7 +4,6 @@ import java.awt.Image;
 
 public class HeroChar extends Character {
 	Image CharacterImage = Generator.heroImg;
-	Image CharacterFace;
 	public String Type;
 
 	HeroChar(String title, int hp, int attack, int def, int skill, Weapon wep, int xLocation,
@@ -19,31 +18,31 @@ public class HeroChar extends Character {
 
 	@Override
 	public Image getImage() {
-		if(this.Alive == true) {
-			if(this.getTeam() == 1) {
-				CharacterFace = Generator.FaceHeroFemale;
-				if(this.getMoved() == false)
-					CharacterImage = Generator.heroImg;
-				else {
-					CharacterImage = Generator.grayheroImg;
-				}
-			}
-			if(this.getTeam() == 2) {
-				CharacterFace = Generator.FaceHeroMale;
-				if(this.getMoved() == false)
-					CharacterImage = Generator.redheroImg;
-				else {
-					CharacterImage = Generator.grayredheroImg;
-				}
-			}
-			if(Type == "Blank") {
-				CharacterImage = Generator.remove;
-				this.Die();
-			}
-			return CharacterImage;
-		} else {
+		if(!alive) {
 			return Generator.remove;
 		}
+
+		if(this.getTeam() == 1) {
+			CharacterFace = Generator.FaceHeroFemale;
+			if(this.getMoved() == false)
+				CharacterImage = Generator.heroImg;
+			else {
+				CharacterImage = Generator.grayheroImg;
+			}
+		}
+		if(this.getTeam() == 2) {
+			CharacterFace = Generator.FaceHeroMale;
+			if(this.getMoved() == false)
+				CharacterImage = Generator.redheroImg;
+			else {
+				CharacterImage = Generator.grayredheroImg;
+			}
+		}
+		if(Type == "Blank") {
+			CharacterImage = Generator.remove;
+			this.Die();
+		}
+		return CharacterImage;
 	}
 
 	@Override
@@ -54,14 +53,5 @@ public class HeroChar extends Character {
 	@Override
 	public int getRange() {
 		return 2;
-	}
-
-	@Override
-	public Image getFaceImage() {
-		if(this.Alive == true) {
-			return CharacterFace;
-		} else {
-			return Generator.remove;
-		}
 	}
 }

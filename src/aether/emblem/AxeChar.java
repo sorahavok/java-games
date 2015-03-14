@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class AxeChar extends Character {
 	Image CharacterImage = Generator.axeImg;
-	Image CharacterFace;
 
 	AxeChar(String title, int hp, int attack, int def, int skill, Weapon wep, int xLocation,
 			int yLocation, int team) {
@@ -17,9 +16,10 @@ public class AxeChar extends Character {
 
 	@Override
 	public Image getImage() {
-		if(!this.Alive) {
+		if(!this.alive) {
 			return Generator.remove;
 		}
+
 		if(this.getTeam() == 1) {
 			if(this.getMoved() == false) {
 				CharacterImage = Generator.axeImg;
@@ -46,14 +46,5 @@ public class AxeChar extends Character {
 	@Override
 	public int getRange() {
 		return 1;
-	}
-
-	@Override
-	public Image getFaceImage() {
-		if(!Alive) {
-			return Generator.remove;
-		}
-		return CharacterFace;
-
 	}
 }

@@ -7,7 +7,8 @@ public abstract class Character {
 	public int yLocate, ListPosition, Team;
 	public Weapon Weapon;
 	public String Name;
-	public boolean Moved, Selected, Alive = true;
+	protected Image CharacterFace;
+	public boolean Moved, Selected, alive;
 
 	// Name, Hit Points, Attack Power, Defense, Hit Chance,
 	// Weapon, X-Location, Y-Location, Team (1-blue 2-red)
@@ -21,6 +22,7 @@ public abstract class Character {
 		HitPercent = skill;
 		xLocate = xLocation;
 		yLocate = yLocation;
+		alive = true;
 		if(team == 1) {
 			ListPosition = Generator.countteam1++;
 		}
@@ -40,7 +42,7 @@ public abstract class Character {
 	public void setHp(int x) {
 		HitPoints = x;
 		if(x <= 0) {
-			Alive = false;
+			alive = false;
 			Generator.Map.setNum(xLocate, yLocate, 1 + Team, 0);
 		}
 
@@ -90,7 +92,7 @@ public abstract class Character {
 	}
 
 	public int getXLocation() {
-		if(!Alive) {
+		if(!alive) {
 			return 0;
 		}
 		return xLocate;
@@ -101,7 +103,7 @@ public abstract class Character {
 	}
 
 	public int getYLocation() {
-		if(!Alive) {
+		if(!alive) {
 			return Generator.Map.water();
 		}
 		return yLocate;
@@ -120,7 +122,7 @@ public abstract class Character {
 	}
 
 	public boolean getMoved() {
-		if(!Alive) {
+		if(!alive) {
 			return true;
 		}
 		return Moved;
@@ -148,7 +150,7 @@ public abstract class Character {
 	}
 
 	public void Die() {
-		Alive = false;
+		alive = false;
 	}
 
 	public abstract int getRange();
@@ -157,5 +159,7 @@ public abstract class Character {
 
 	public abstract Image getImage();
 
-	public abstract Image getFaceImage();
+	public Image getFaceImage() {
+		return alive ? CharacterFace : Generator.remove;
+	}
 }

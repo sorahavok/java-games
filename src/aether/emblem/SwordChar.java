@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class SwordChar extends Character {
 	Image CharacterImage;
-	Image CharacterFace;
 
 	SwordChar(String title, int hp, int attack, int def, int skill, Weapon wep, int xLocation,
 			int yLocation, int team) {
@@ -18,27 +17,27 @@ public class SwordChar extends Character {
 
 	@Override
 	public Image getImage() {
-		if(this.Alive == true) {
-			if(this.getTeam() == 1) {
-				CharacterFace = Generator.FaceSwordMale;
-				if(this.getMoved() == false)
-					CharacterImage = Generator.swordImg;
-				else {
-					CharacterImage = Generator.grayswordImg;
-				}
-			}
-			if(this.getTeam() == 2) {
-				CharacterFace = Generator.FaceSwordFemale;
-				if(this.getMoved() == false)
-					CharacterImage = Generator.redswordImg;
-				else {
-					CharacterImage = Generator.grayredswordImg;
-				}
-			}
-			return CharacterImage;
-		} else {
+		if(!alive) {
 			return Generator.remove;
 		}
+		
+		if(this.getTeam() == 1) {
+			CharacterFace = Generator.FaceSwordMale;
+			if(this.getMoved() == false)
+				CharacterImage = Generator.swordImg;
+			else {
+				CharacterImage = Generator.grayswordImg;
+			}
+		}
+		if(this.getTeam() == 2) {
+			CharacterFace = Generator.FaceSwordFemale;
+			if(this.getMoved() == false)
+				CharacterImage = Generator.redswordImg;
+			else {
+				CharacterImage = Generator.grayredswordImg;
+			}
+		}
+		return CharacterImage;
 	}
 
 	@Override
@@ -49,14 +48,5 @@ public class SwordChar extends Character {
 	@Override
 	public int getRange() {
 		return 1;
-	}
-
-	@Override
-	public Image getFaceImage() {
-		if(this.Alive == true) {
-			return CharacterFace;
-		} else {
-			return Generator.remove;
-		}
 	}
 }
