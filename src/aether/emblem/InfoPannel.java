@@ -146,7 +146,7 @@ public class InfoPannel extends JPanel
 	}
 
 	public int Space(int spaces) {
-		spaces--;
-		return spaces * 75 + (spaces + 1) * 25;
+		int space = spaces-1;
+		return space * 75 + (space + 1) * 25;
 	}
 }

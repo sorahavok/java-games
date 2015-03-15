@@ -4,9 +4,9 @@ import java.awt.*;
 import java.io.*;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import util.menu.BasicGameFrame;
 import life.board.*;
 import life.controller.*;
 import life.generator.*;
@@ -35,7 +35,7 @@ public class Life extends JPanel {
 	}
 
 	public static void main(String[] args) throws IOException {
-		JFrame frame = new JFrame("Life");
+		BasicGameFrame frame = new BasicGameFrame("Life", FRAME_HEIGHT, FRAME_WIDTH, true);
 
 //		Good rules for a HexBoard
 //		Map<Integer, BlockState> rulesMap = ImmutableMap.of(
@@ -82,15 +82,7 @@ public class Life extends JPanel {
 		life.addMouseWheelListener(controller);
 		
 		frame.add(life);
-
-		setUpFrame(frame);
+		frame.start();
 		controller.run();
-	}
-
-	private static void setUpFrame(JFrame f) {
-		f.setUndecorated(true);
-		f.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-		f.setVisible(true);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

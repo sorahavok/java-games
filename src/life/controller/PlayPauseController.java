@@ -3,13 +3,12 @@ package life.controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
-import javax.swing.JFrame;
-
 import life.board.Board;
+import util.menu.BasicGameFrame;
 
 public class PlayPauseController extends AbstractController {
 
-	public PlayPauseController(final JFrame frame, final Board board, final int fps) {
+	public PlayPauseController(final BasicGameFrame frame, final Board board, final int fps) {
 		super(frame, board, true, fps);
 	}
 

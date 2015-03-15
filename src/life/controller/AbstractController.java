@@ -2,21 +2,21 @@ package life.controller;
 
 import java.awt.Graphics;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import life.board.Board;
+import util.menu.BasicGameFrame;
 
 public abstract class AbstractController extends JPanel implements Controller {
 
-	protected final JFrame frame;
+	protected final BasicGameFrame frame;
 	protected final Board board;
 	
 	protected int fps;
 	protected boolean running;
 	protected boolean keepAlive;
 	
-	public AbstractController(final JFrame frame, final Board board, final boolean running, final int fps) {
+	public AbstractController(final BasicGameFrame frame, final Board board, final boolean running, final int fps) {
 		this.frame = frame;
 		this.board = board;
 		this.running = running;

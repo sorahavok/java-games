@@ -1,12 +1,11 @@
 package life.controller;
 
-import javax.swing.JFrame;
-
+import util.menu.BasicGameFrame;
 import life.board.Board;
 
 public class AlwaysPlay extends AbstractController {
 
-	public AlwaysPlay(final JFrame frame, final Board board, final int fps) {
+	public AlwaysPlay(final BasicGameFrame frame, final Board board, final int fps) {
 		super(frame, board, true, fps);
 	}
 }
